@@ -105,6 +105,13 @@
             <div class="col-md-6">
                 <label for="cidade" class="form-label">Cidade</label>
                 <input id="cidade" type="text" class="form-control" formControlName="cidade">
+                <span class="text-danger" *ngIf="f['endereco'].get('cidade')?.touched
+                && f['endereco'].get('cidade')?.invalid">
+                    Por favor, informe uma cidade.
+                    <span *ngIf="f['endereco'].get('cidade')?.hasError('maxlength')">
+                        Por favor, informe uma cidade com no máximo 100 caracteres
+                    </span>            
+                </span>
             </div>
             <div class="col-md-3">
                 <label for="uf" class="form-label">UF</label>
@@ -138,10 +145,18 @@
                     <option>SE</option>
                     <option>TO</option>
                 </select>
+                <span class="text-danger" *ngIf="f['endereco'].get('uf')?.touched
+                && f['endereco'].get('uf')?.invalid">
+                    Por favor, selecione uma UF.
+                </span>
             </div>
             <div class="col-md-3">
                 <label for="cep" class="form-label">CEP</label>
                 <input id="cep" type="text" class="form-control" formControlName="cep">
+                <span class="text-danger" *ngIf="f['endereco'].get('cep')?.touched
+                && f['endereco'].get('cep')?.invalid">
+                    Por favor, informe um CEP valido.
+                </span>
             </div>
         </div>
     </fieldset>

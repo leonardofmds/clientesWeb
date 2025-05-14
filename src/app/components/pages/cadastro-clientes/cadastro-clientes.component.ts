@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { cpfValidator } from '../../validators/cpf-validator-component';
+import { cepValidator, cpfValidator } from '../../validators/validators';
 
 @Component({
   selector: 'app-cadastro-clientes',
@@ -27,7 +27,7 @@ export class CadastroClientesComponent {
       bairro: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       cidade: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       uf: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
-      cep: new FormControl('', [Validators.required])
+      cep: new FormControl('', [Validators.required, cepValidator])
     })
   });
 

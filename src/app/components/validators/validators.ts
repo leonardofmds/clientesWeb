@@ -23,3 +23,13 @@ export function cpfValidator(control: AbstractControl): ValidationErrors | null 
 
   return null; // CPF válido
 }
+
+export function cepValidator(control: AbstractControl): ValidationErrors | null {
+  const cep = control.value?.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+  if (!cep || cep.length !== 8) {
+    return { cepInvalido: true };
+  }
+
+  return null; // CEP válido
+}
