@@ -1,0 +1,150 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-4">
+    <h4 class="mb-4">Cadastro de Cliente</h4>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Nome</label>
+            <input id="nome" type="text" class="form-control" formControlName="nome">
+            <span class="text-danger" *ngIf="f['nome'].touched
+            && f['nome'].invalid">
+                <span *ngIf="f['nome']?.hasError('required')">
+                    Por favor, informe o nome do cliente.
+                </span>
+                <span *ngIf="f['nome']?.hasError('minlength')">
+                    Por favor, informe o nome com
+                    pelo menos 8 caracteres.
+                </span>
+                <span *ngIf="f['nome']?.hasError('maxlength')">
+                    Por favor, informe o nome do produto com
+                    no máximo 100 caracteres.
+                </span>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" class="form-control" formControlName="email">
+            <span class="text-danger" *ngIf="f['email'].touched
+            && f['email'].invalid">
+            Por favor informe um e-mail válido.
+            </span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF</label>
+            <input id="cpf" type="text" class="form-control" formControlName="cpf">
+            <span class="text-danger" *ngIf="f['cpf'].touched
+            && f['cpf'].invalid">
+            Por favor informe um CPF válido.
+            </span>
+        </div>
+        <div class="col-md-6">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input id="dataNascimento" type="date" class="form-control" formControlName="dataNascimento">
+            <span class="text-danger" *ngIf="f['dataNascimento'].touched
+            && f['dataNascimento'].invalid">
+            Por favor informe uma data de nascimento.
+            </span>
+        </div>
+    </div>
+
+    <fieldset formGroupName="endereco">
+        <legend class="mt-4 mb-3">Endereço</legend>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input id="logradouro" type="text" class="form-control" formControlName="logradouro">
+                <span class="text-danger" *ngIf="f['endereco'].get('logradouro')?.touched
+                && f['endereco'].get('logradouro')?.invalid">
+                     <span *ngIf="f['endereco'].get('logradouro')?.hasError('required')">
+                        Por favor, informe um logradouro(Rua, Avenida, etc)
+                    </span>
+                    <span *ngIf="f['endereco'].get('logradouro')?.hasError('minlength')">
+                        Por favor, informe um logradouro com ao menos 8 caracteres.
+                    </span>
+                    <span *ngIf="f['endereco'].get('logradouro')?.hasError('maxlength')">
+                        Por favor, informe um logradouro com no máximo 100 caracteres.
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-4">
+                <label for="numero" class="form-label">Número</label>
+                <input id="numero" type="text" class="form-control" formControlName="numero">
+                <span class="text-danger" *ngIf="f['endereco'].get('numero')?.touched
+                && f['endereco'].get('numero')?.invalid">
+                    Por favor, informe um número.
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="complemento" class="form-label">Complemento</label>
+                <input id="complemento" type="text" class="form-control" formControlName="complemento">
+                <span class="text-danger" *ngIf="f['endereco'].get('complemento')?.touched
+                && f['endereco'].get('complemento')?.invalid">
+                    Por favor, informe um complemento. (Casa, Apartamento, etc)
+                </span>
+            </div>
+            <div class="col-md-6">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input id="bairro" type="text" class="form-control" formControlName="bairro">
+                <span class="text-danger" *ngIf="f['endereco'].get('bairro')?.touched
+                && f['endereco'].get('bairro')?.invalid">
+                    Por favor, informe um bairro.
+                    <span *ngIf="f['endereco'].get('bairro')?.hasError('maxlength')">
+                        Por favor, informe um bairro com no máximo 100 caracteres
+                    </span>            
+                </span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input id="cidade" type="text" class="form-control" formControlName="cidade">
+            </div>
+            <div class="col-md-3">
+                <label for="uf" class="form-label">UF</label>
+                <select formControlName="uf" class="form-select" id="uf">
+                    <option selected disabled>Escolha...</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="cep" class="form-label">CEP</label>
+                <input id="cep" type="text" class="form-control" formControlName="cep">
+            </div>
+        </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+</form>
