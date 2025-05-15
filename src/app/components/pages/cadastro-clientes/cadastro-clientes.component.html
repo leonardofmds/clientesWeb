@@ -1,6 +1,16 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-4">
     <h4 class="mb-4">Cadastro de Cliente</h4>
 
+    <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> {{ mensagemSucesso }} </strong>
+        <button (click)="mensagemSucesso = ''" type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+
+    <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong> {{ mensagemErro }} </strong>
+        <button (click)="mensagemErro = ''" type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+
     <div class="row mb-3">
         <div class="col-md-6">
             <label for="nome" class="form-label">Nome</label>
@@ -25,7 +35,7 @@
             <input id="email" type="email" class="form-control" formControlName="email">
             <span class="text-danger" *ngIf="f['email'].touched
             && f['email'].invalid">
-            Por favor informe um e-mail válido.
+                Por favor informe um e-mail válido.
             </span>
         </div>
     </div>
@@ -36,15 +46,16 @@
             <input id="cpf" type="text" class="form-control" formControlName="cpf">
             <span class="text-danger" *ngIf="f['cpf'].touched
             && f['cpf'].invalid">
-            Por favor informe um CPF válido.
+                Por favor informe um CPF válido.
             </span>
         </div>
         <div class="col-md-6">
             <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-            <input id="dataNascimento" type="date" class="form-control" formControlName="dataNascimento">
+            <input id="dataNascimento" type="text" class="form-control" formControlName="dataNascimento"
+                mask="d0/M0/0000" [dropSpecialCharacters]="false" placeholder="dd/mm/aaaa">
             <span class="text-danger" *ngIf="f['dataNascimento'].touched
             && f['dataNascimento'].invalid">
-            Por favor informe uma data de nascimento.
+                Por favor informe uma data de nascimento.
             </span>
         </div>
     </div>
@@ -58,7 +69,7 @@
                 <input id="logradouro" type="text" class="form-control" formControlName="logradouro">
                 <span class="text-danger" *ngIf="f['endereco'].get('logradouro')?.touched
                 && f['endereco'].get('logradouro')?.invalid">
-                     <span *ngIf="f['endereco'].get('logradouro')?.hasError('required')">
+                    <span *ngIf="f['endereco'].get('logradouro')?.hasError('required')">
                         Por favor, informe um logradouro(Rua, Avenida, etc)
                     </span>
                     <span *ngIf="f['endereco'].get('logradouro')?.hasError('minlength')">
@@ -96,7 +107,7 @@
                     Por favor, informe um bairro.
                     <span *ngIf="f['endereco'].get('bairro')?.hasError('maxlength')">
                         Por favor, informe um bairro com no máximo 100 caracteres
-                    </span>            
+                    </span>
                 </span>
             </div>
         </div>
@@ -110,7 +121,7 @@
                     Por favor, informe uma cidade.
                     <span *ngIf="f['endereco'].get('cidade')?.hasError('maxlength')">
                         Por favor, informe uma cidade com no máximo 100 caracteres
-                    </span>            
+                    </span>
                 </span>
             </div>
             <div class="col-md-3">
@@ -161,5 +172,5 @@
         </div>
     </fieldset>
 
-    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Salvar</button>
 </form>
